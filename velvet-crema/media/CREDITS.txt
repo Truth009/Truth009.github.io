@@ -1,0 +1,16 @@
+Videos and stills from Pexels (free to use, no attribution required). Source video IDs:
+hero, latte      2909914   Coffee making art by a bartender
+espresso         7487655   Pouring espresso into a ceramic cup
+americano        3772013   Pouring coffee into a mug
+cappuccino       6201664   A cup of coffee with latte art
+mocha            34687496  Dark chocolate flowing
+iced-latte, scrub 11251879 Pouring milk into coffee with ice
+iced-caramel     4748911   Pouring syrup over a glass of milk
+cold-brew        26871641  Cold coffee poured over ice
+frappe           32272236  Creamy coffee with whipped topping
+roast            13882353  Coffee beans in a roaster
+Page: https://www.pexels.com/video/<id>/
+
+Coffee bean cut-outs: Pexels photos 12007828 and 6728979 (cut out with media/cut-beans.cjs)
+process film     6280328, 6280333, 19428460, 7487683, 10740240, 7487655, 2909914, 6024382, 6602055 (built with media/process.sh: AV1 + H.264 HD + H.264 720p)
+couples (reviews) 8296455, 8296448, 6829630 (built with media/couples.sh: AV1 + H.264 HD + H.264 720p)

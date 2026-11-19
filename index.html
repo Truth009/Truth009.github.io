@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Haven Nation Demos</title>
+<meta name="description" content="Live website demos by Haven Nation: a café with video menu and online ordering, and a luxury real estate agency.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,500&family=DM+Sans:wght@400;500;600;700&display=swap">
+<style>
+  /* Layout: a short gallery page. Dark ground, gold for the brand, two large demo cards. */
+  :root {
+    color-scheme: dark;
+    --bg: #0f0c0a; --card: #19140f; --line: rgba(255, 230, 190, .14); --text: #f4ebdf; --muted: #b3a593;
+    --gold: #e7bb63; --gold-hi: #f6d58e;
+    --display: "Playfair Display", Georgia, serif; --body: "DM Sans", "Segoe UI", system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 400 16px/1.6 var(--body); }
+  .wrap { max-width: 1200px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  header .wrap { display: flex; align-items: center; gap: 12px; padding-block: 26px; }
+  .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--text); font: 600 20px/1 var(--display); letter-spacing: .08em; }
+  .brand b { color: var(--gold); font-weight: 600; }
+  .hero .wrap { padding-block: clamp(30px, 6vw, 70px) clamp(30px, 5vw, 50px); display: grid; gap: 16px; }
+  .eyebrow { font: 600 12px/1 var(--body); letter-spacing: .2em; text-transform: uppercase; color: var(--gold); }
+  h1 { margin: 0; font: 600 clamp(40px, 6.4vw, 84px)/1 var(--display); text-wrap: balance; }
+  h1 em { font-style: italic; font-weight: 500; color: var(--gold-hi); }
+  .hero p { margin: 0; color: var(--muted); max-width: 56ch; font-size: 18px; }
+  .demos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; padding-bottom: 50px; }
+  .demo { display: grid; text-decoration: none; color: var(--text); background: var(--card); border: 1px solid var(--line); border-radius: 22px; overflow: hidden; transition: transform .35s cubic-bezier(.2, .75, .2, 1), border-color .35s; }
+  .demo:hover { transform: translateY(-4px); border-color: rgba(231, 187, 99, .5); }
+  .demo:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
+  .demo .ph { aspect-ratio: 16 / 10; overflow: hidden; }
+  .demo img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 1.2s cubic-bezier(.2, .75, .2, 1); }
+  .demo:hover img { transform: scale(1.05); }
+  .demo .body { padding: 22px 22px 24px; display: grid; gap: 10px; }
+  .demo h2 { margin: 0; font: 600 30px/1.1 var(--display); }
+  .demo p { margin: 0; color: var(--muted); }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chips span { font: 600 12px/1 var(--body); padding: 7px 10px; border-radius: 99px; background: rgba(255, 255, 255, .06); color: var(--muted); }
+  .open { font: 700 12px/1 var(--body); letter-spacing: .14em; text-transform: uppercase; color: var(--gold); margin-top: 4px; }
+  .note { border-top: 1px solid var(--line); }
+  .note .wrap { padding-block: 26px 40px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; color: var(--muted); font-size: 14px; }
+  @media (max-width: 760px) { .demos { grid-template-columns: minmax(0, 1fr); } }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+<header><div class="wrap"><a class="brand" href="./"><svg width="34" height="34" viewBox="0 0 48 48" aria-hidden="true"><defs><radialGradient id="g" cx="38%" cy="32%" r="70%"><stop offset="0" stop-color="#f6d58e"/><stop offset=".6" stop-color="#c9963f"/><stop offset="1" stop-color="#4a3216"/></radialGradient></defs><ellipse cx="24" cy="24" rx="22" ry="7.5" fill="none" stroke="#e7bb63" stroke-width=".8" opacity=".6" transform="rotate(-22 24 24)"/><circle cx="24" cy="24" r="14" fill="url(#g)"/><ellipse cx="24" cy="24" rx="14" ry="3.4" fill="none" stroke="#f4ebdf" stroke-width=".7" opacity=".6"/><ellipse cx="24" cy="24" rx="6" ry="14" fill="none" stroke="#f4ebdf" stroke-width=".7" opacity=".6"/></svg><span><b>HAVEN</b> NATION</span></a></div></header>
+
+<section class="hero"><div class="wrap">
+  <span class="eyebrow">Live website demos</span>
+  <h1>Websites that <em>run your business</em></h1>
+  <p>Open a demo and try it like a customer would: browse, order, book, and send a message. Every site works on phones and computers, and can be made with your own name, photos, menu and prices.</p>
+</div></section>
+
+<main class="wrap demos">
+  <a class="demo" href="velvet-crema/">
+    <div class="ph"><img src="velvet-crema/media/hero.webp" alt="Velvet &amp; Crema café website" loading="lazy"></div>
+    <div class="body">
+      <span class="eyebrow">Café &amp; coffee shop</span>
+      <h2>Velvet &amp; Crema</h2>
+      <p>A video menu, a build-your-own-cup studio, orders sent straight to WhatsApp, guest reviews and a contact page with table bookings.</p>
+      <div class="chips"><span>Online orders</span><span>Video menu</span><span>Reviews</span><span>Bookings</span></div>
+      <span class="open">Open the demo →</span>
+    </div>
+  </a>
+  <a class="demo" href="aurelle/">
+    <div class="ph"><img src="aurelle/img/hero-1.webp" alt="Aurelle Residences real estate website" loading="lazy"></div>
+    <div class="body">
+      <span class="eyebrow">Real estate agency</span>
+      <h2>Aurelle Residences</h2>
+      <p>A magazine-style site for luxury homes: a slider of featured houses, room-by-room tours, collections and a private viewing request form.</p>
+      <div class="chips"><span>Property slider</span><span>Room tours</span><span>Viewing requests</span></div>
+      <span class="open">Open the demo →</span>
+    </div>
+  </a>
+</main>
+
+<section class="note"><div class="wrap"><span>These are sample sites: names, prices and reviews are examples. Photos and videos: Pexels.</span><span>Like what you see? Reply to the message that brought you here.</span></div></section>
+</body>
+</html>
