@@ -42,10 +42,13 @@ fs.rmSync(cafe, { recursive: true, force: true });
 copyDir(`${SAMPLES}/cafe/site/media`, path.join(cafe, "media"));
 fs.writeFileSync(path.join(cafe, "index.html"), wrap(`${SAMPLES}/cafe/site/index.html`));
 
-// Aurelle Residences (luxury real estate)
-const aur = path.join(here, "aurelle");
-fs.rmSync(aur, { recursive: true, force: true });
-copyDir(`${SAMPLES}/aurelle-luxury/img`, path.join(aur, "img"));
-fs.writeFileSync(path.join(aur, "index.html"), wrap(`${SAMPLES}/aurelle-luxury/index.html`));
+// Vantage Residences (luxury real estate; replaced the older Aurelle demo)
+const van = path.join(here, "vantage");
+fs.rmSync(van, { recursive: true, force: true });
+copyDir(`${SAMPLES}/vantage/site/media`, path.join(van, "media"));
+copyDir(`${SAMPLES}/vantage/site/img`, path.join(van, "img"));
+fs.copyFileSync(`${SAMPLES}/vantage/site/CREDITS.txt`, path.join(van, "CREDITS.txt"));
+fs.writeFileSync(path.join(van, "index.html"), wrap(`${SAMPLES}/vantage/site/index.html`));
+fs.rmSync(path.join(here, "aurelle"), { recursive: true, force: true });
 
-console.log("built velvet-crema and aurelle");
+console.log("built velvet-crema and vantage");

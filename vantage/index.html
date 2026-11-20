@@ -1,0 +1,625 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Vantage Residences</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap">
+<style>
+  /* Layout: a night-to-day story. Midnight blue for the big moments (hero, sky reveal, signature list,
+     journal), cool porcelain for browsing (search, listings, testimonial). A wide grotesk for scale,
+     a thin Cormorant for luxury, champagne gold for anything you can press. One committed look, so
+     no light/dark switch. */
+  :root {
+    color-scheme: dark;
+    --night: #070b14;
+    --navy: #0d1424;
+    --dusk: #16233b;
+    --porcelain: #eef1f5;
+    --paper: #ffffff;
+    --ink: #0c1322;
+    --ink-soft: #55607a;
+    --text: #eef1f5;
+    --mist: #93a0b8;
+    --gold: #d4b07a;
+    --gold-hi: #f0d9ad;
+    --line-dark: rgba(212, 176, 122, .22);
+    --line-light: #d6dce6;
+    --glass: rgba(255, 255, 255, .08);
+    --glass-line: rgba(255, 255, 255, .18);
+    --serif: "Cormorant Garamond", "Didot", "Bodoni MT", Georgia, serif;
+    --sans: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--night); color: var(--text); font: 400 16px/1.6 var(--sans); overflow-x: hidden; }
+  body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--night); }
+  img, video { display: block; max-width: 100%; }
+  a { color: inherit; }
+  button { font: inherit; color: inherit; }
+  :focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+  .wrap { max-width: 1440px; margin: 0 auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+  .eyebrow { font: 500 12px/1.2 var(--sans); letter-spacing: .26em; text-transform: uppercase; color: var(--gold); }
+  .slash { font: 500 13px/1 var(--sans); letter-spacing: .02em; color: var(--mist); }
+  h1, h2, h3 { margin: 0; font-weight: 400; text-wrap: balance; }
+  .serif { font-family: var(--serif); }
+  p { margin: 0; }
+  .num { font-variant-numeric: tabular-nums; }
+
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 12px; padding: 15px 26px; border-radius: 999px; border: 1px solid transparent; cursor: pointer; text-decoration: none; font: 600 12px/1 var(--sans); letter-spacing: .16em; text-transform: uppercase; transition: background .3s, color .3s, transform .3s, border-color .3s; }
+  .btn.gold { background: linear-gradient(180deg, var(--gold-hi), var(--gold)); color: #1a1408; }
+  .btn.gold:hover { transform: translateY(-2px); }
+  .btn.line { border-color: rgba(240, 217, 173, .6); color: var(--gold-hi); background: rgba(7, 11, 20, .25); backdrop-filter: blur(6px); }
+  .btn.line:hover { background: var(--gold); color: #1a1408; }
+  .btn.dark { background: var(--ink); color: var(--porcelain); }
+  .btn.dark:hover { transform: translateY(-2px); }
+  .btn .ar { transition: transform .3s; }
+  .btn:hover .ar { transform: translateX(4px); }
+
+  /* ===== Header ===== */
+  header.top { position: fixed; z-index: 40; top: env(safe-area-inset-top, 0px); left: 0; right: 0; transition: background .4s; }
+  header.top.solid { background: rgba(7, 11, 20, .82); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
+  header.top .wrap { display: flex; align-items: center; gap: 22px; min-height: 80px; }
+  .logo { margin-right: auto; text-decoration: none; display: grid; line-height: 1; }
+  .logo b { font: 400 26px/1 var(--serif); letter-spacing: .34em; }
+  .logo small { font: 500 9px/1 var(--sans); letter-spacing: .5em; color: var(--gold); margin-top: 6px; padding-left: 2px; }
+  nav.pill { display: flex; gap: 4px; padding: 5px; border-radius: 999px; background: rgba(255, 255, 255, .1); border: 1px solid var(--glass-line); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+  nav.pill a { text-decoration: none; padding: 9px 16px; border-radius: 999px; font: 500 13px/1 var(--sans); color: rgba(238, 241, 245, .82); transition: background .25s, color .25s; }
+  nav.pill a:hover { color: #fff; background: rgba(255, 255, 255, .1); }
+  nav.pill a.on { background: #fff; color: var(--ink); }
+  .menu-btn { display: none; width: 46px; height: 46px; border-radius: 50%; border: 1px solid var(--glass-line); background: rgba(255, 255, 255, .08); cursor: pointer; place-items: center; }
+  .sheet { position: fixed; z-index: 39; inset: 0; background: rgba(7, 11, 20, .97); display: grid; align-content: center; gap: 6px; padding: 100px max(24px, env(safe-area-inset-right, 0px)) 40px max(24px, env(safe-area-inset-left, 0px)); opacity: 0; pointer-events: none; transition: opacity .35s; }
+  .sheet.open { opacity: 1; pointer-events: auto; }
+  .sheet a { font: 300 40px/1.2 var(--serif); text-decoration: none; color: var(--text); text-transform: uppercase; letter-spacing: .04em; }
+  .sheet a:hover { color: var(--gold-hi); }
+  @media (max-width: 1020px) { nav.pill { display: none; } .menu-btn { display: grid; } header.top .btn { display: none; } }
+
+  /* ===== Hero: the house stands in front of the giant name ===== */
+  .hero { position: relative; height: 100vh; height: 100svh; min-height: 640px; overflow: hidden; isolation: isolate; background: #9cc4ea; }
+  .hero .layer { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 30% 60%; will-change: transform; }
+  .hero .word { position: absolute; left: 50%; top: 10%; translate: -50% 0; z-index: 1; margin: 0; white-space: nowrap; font: 900 clamp(96px, 16.5vw, 300px)/.8 var(--sans); font-stretch: 118%; letter-spacing: -.035em; color: #0e1a31; opacity: .92; will-change: transform; pointer-events: none; }
+  .hero .front { z-index: 2; }
+  .hero::after { content: ""; position: absolute; inset: 0; z-index: 3; pointer-events: none; background: linear-gradient(0deg, rgba(7, 11, 20, .88) 0%, rgba(7, 11, 20, .35) 32%, transparent 55%), linear-gradient(180deg, rgba(7, 11, 20, .35), transparent 22%); }
+  .hero .ui { position: absolute; inset: 0; z-index: 4; pointer-events: none; }
+  .hero .ui > * { pointer-events: auto; }
+  .hero .year { color: #0e1a31 !important; position: absolute; left: 72%; top: calc(10% - 22px); translate: -50% 0; font: 500 13px/1 var(--sans); color: rgba(255, 255, 255, .9); letter-spacing: .1em; }
+  .hero .kinds { position: absolute; right: max(20px, 3vw); top: 120px; text-align: right; display: grid; gap: 4px; font: 500 15px/1.4 var(--sans); color: #fff; }
+  .hero .kinds a { text-decoration: none; opacity: .9; } .hero .kinds a:hover { opacity: 1; color: var(--gold-hi); }
+  .hero .social { position: absolute; left: max(20px, 2.4vw); top: 50%; translate: 0 -50%; display: grid; gap: 12px; }
+  .hero .social span { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: rgba(255, 255, 255, .14); border: 1px solid rgba(255, 255, 255, .3); backdrop-filter: blur(8px); color: #fff; }
+  .hero .copy { position: absolute; left: max(20px, 3vw); right: max(20px, 3vw); bottom: max(34px, 5vh); display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 26px; }
+  .hero .copy h1 { font: 300 clamp(40px, 5.4vw, 86px)/.98 var(--serif); text-transform: uppercase; letter-spacing: .01em; margin-top: 12px; }
+  .hero .copy h1 em { font-style: italic; color: var(--gold-hi); text-transform: none; }
+  .hero .copy .act { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px; }
+  .hero .copy p { max-width: 34ch; color: rgba(238, 241, 245, .86); font-size: 15px; text-align: right; }
+  .hero .scroll-cue { position: absolute; left: 50%; bottom: 18px; translate: -50% 0; width: 1px; height: 46px; background: linear-gradient(var(--gold-hi), transparent); animation: cue 2.4s ease-in-out infinite; }
+  @keyframes cue { 0% { transform: scaleY(0); transform-origin: top; } 50% { transform: scaleY(1); transform-origin: top; } 51% { transform-origin: bottom; } 100% { transform: scaleY(0); transform-origin: bottom; } }
+  .hero .word { animation: wordUp 1.6s cubic-bezier(.2, .75, .2, 1) both; }
+  @keyframes wordUp { from { transform: translateY(38%); opacity: 0; } }
+  .hero .front { animation: houseIn 1.8s cubic-bezier(.2, .75, .2, 1) both; }
+  @keyframes houseIn { from { transform: scale(1.06); } }
+  .hero .copy > * { animation: fadeUp 1s .6s cubic-bezier(.2, .75, .2, 1) both; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } }
+  @media (max-width: 760px) {
+    .hero .layer { object-position: 22% 62%; }
+    .hero .word { top: 15%; font-size: 15.5vw; }
+    .hero .year { top: calc(15% - 20px); left: 62%; }
+    .hero .kinds, .hero .social { display: none; }
+    .hero .copy p { text-align: left; }
+  }
+
+  /* ===== Sky reveal: scroll up the tower ===== */
+  .sky { position: relative; height: 420vh; background: var(--night); }
+  .sky .stage { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
+  .sky video, .sky .poster { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .sky .stage::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(7, 11, 20, .78) 0%, rgba(7, 11, 20, .35) 45%, transparent 70%), linear-gradient(0deg, rgba(7, 11, 20, .6), transparent 40%); pointer-events: none; }
+  .sky .chapters { position: absolute; z-index: 2; left: max(20px, 5vw); top: 50%; translate: 0 -40%; width: min(620px, 82vw); }
+  .sky .ch { position: absolute; inset: 0 auto auto 0; width: 100%; opacity: 0; transform: translateY(26px); transition: opacity .7s, transform .7s cubic-bezier(.2, .75, .2, 1); pointer-events: none; }
+  .sky .ch.on { opacity: 1; transform: none; pointer-events: auto; }
+  .sky .ch .eyebrow { display: block; margin-bottom: 18px; }
+  .sky .ch h2 { font: 300 clamp(44px, 6.4vw, 104px)/.95 var(--serif); text-transform: uppercase; letter-spacing: .01em; }
+  .sky .ch p { margin-top: 16px; color: rgba(238, 241, 245, .86); font-size: 17px; max-width: 40ch; }
+  .sky .facts { display: flex; flex-wrap: wrap; gap: 8px; margin: 22px 0 26px; }
+  .sky .facts span { padding: 9px 14px; border-radius: 999px; background: var(--glass); border: 1px solid var(--glass-line); backdrop-filter: blur(8px); font: 500 13px/1 var(--sans); }
+  .sky .rail { position: absolute; z-index: 2; right: max(20px, 3.4vw); top: 50%; translate: 0 -50%; height: min(52vh, 420px); width: 34px; display: grid; justify-items: center; }
+  .sky .rail .track { position: absolute; top: 0; bottom: 0; width: 1px; background: rgba(255, 255, 255, .25); }
+  .sky .rail .fill { position: absolute; top: 0; width: 1px; height: 0; background: var(--gold-hi); }
+  .sky .rail .dot { position: absolute; left: 50%; width: 34px; height: 34px; margin: -17px 0 0 -17px; border-radius: 50%; border: 1px solid var(--gold-hi); background: rgba(7, 11, 20, .6); display: grid; place-items: center; font: 600 11px/1 var(--sans); color: var(--gold-hi); }
+  .sky .rail .lbl { position: absolute; right: 48px; top: 0; writing-mode: vertical-rl; transform: rotate(180deg); font: 500 11px/1 var(--sans); letter-spacing: .3em; text-transform: uppercase; color: var(--mist); }
+  .sky .floor { position: absolute; z-index: 2; right: max(80px, 8vw); bottom: 34px; text-align: right; font: 300 14px/1.3 var(--sans); color: var(--mist); }
+  .sky .floor b { display: block; font: 300 64px/1 var(--serif); color: var(--text); font-variant-numeric: tabular-nums; }
+  @media (max-width: 760px) {
+    .sky .stage::after { background: linear-gradient(0deg, rgba(7, 11, 20, .9) 0%, rgba(7, 11, 20, .4) 50%, rgba(7, 11, 20, .2) 100%); }
+    .sky .chapters { top: auto; bottom: 28%; translate: none; }
+    .sky .floor { bottom: auto; top: 96px; right: 70px; } .sky .floor b { font-size: 44px; }
+    .sky .rail { right: 16px; }
+  }
+
+  /* ===== Find a home (porcelain) ===== */
+  .light { background: var(--porcelain); color: var(--ink); }
+  .light .eyebrow { color: #9a7640; }
+  .find { overflow-x: clip; }
+  .find .wrap { padding-block: clamp(90px, 11vw, 150px) 40px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 50px; align-items: center; }
+  .find .words { font: 700 clamp(56px, 7.6vw, 124px)/.9 var(--sans); font-stretch: 92%; letter-spacing: -.03em; margin: 18px 0 24px; }
+  .find .words span { display: block; }
+  .find .words span:nth-child(odd) { color: var(--ink); } .find .words span:nth-child(even) { color: #26365a; }
+  .find .lead { color: var(--ink-soft); max-width: 44ch; font-size: 17px; }
+  .search { margin-top: 28px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)) auto; gap: 6px; padding: 6px; background: var(--paper); border: 1px solid var(--line-light); border-radius: 22px; box-shadow: 0 24px 50px -30px rgba(12, 19, 34, .35); }
+  .search label { display: grid; gap: 4px; padding: 10px 14px; border-radius: 16px; font: 600 10px/1 var(--sans); letter-spacing: .16em; text-transform: uppercase; color: var(--ink-soft); }
+  .search label:hover { background: var(--porcelain); }
+  .search select { border: 0; background: transparent; font: 500 15px/1.3 var(--sans); color: var(--ink); padding: 0; letter-spacing: 0; text-transform: none; cursor: pointer; width: 100%; }
+  .search button { border: 0; border-radius: 16px; background: var(--ink); color: #fff; width: 58px; display: grid; place-items: center; cursor: pointer; }
+  .search button:hover { background: #26365a; }
+  @media (max-width: 640px) { .search { grid-template-columns: minmax(0, 1fr); } .search button { width: 100%; height: 50px; } }
+  .fan { position: relative; height: clamp(500px, 50vw, 660px); }
+  .fan .lc { position: absolute; width: min(380px, 72%); left: 50%; top: 50%; transition: transform .7s cubic-bezier(.2, .75, .2, 1), box-shadow .7s; }
+  .fan .lc:nth-child(1) { transform: translate(-34%, -78%) rotate(6deg); z-index: 1; }
+  .fan .lc:nth-child(2) { transform: translate(-50%, -62%) rotate(-5deg); z-index: 2; }
+  .fan .lc:nth-child(3) { transform: translate(-60%, -46%) rotate(3deg); z-index: 3; }
+  .fan .lc:nth-child(4) { transform: translate(-44%, -30%) rotate(-7deg); z-index: 4; }
+  .fan:hover .lc:nth-child(1) { transform: translate(-22%, -84%) rotate(8deg); }
+  .fan:hover .lc:nth-child(2) { transform: translate(-64%, -66%) rotate(-8deg); }
+  .fan:hover .lc:nth-child(3) { transform: translate(-40%, -44%) rotate(5deg); }
+  .fan:hover .lc:nth-child(4) { transform: translate(-58%, -26%) rotate(-9deg); }
+  @media (max-width: 900px) { .find .wrap { grid-template-columns: minmax(0, 1fr); } .fan { height: 520px; } }
+  @media (max-width: 480px) { .fan { height: 460px; } .fan .lc { width: 78%; } }
+
+  /* listing card (used in the fan and the grid) */
+  .lc { background: var(--paper); color: var(--ink); border-radius: 20px; padding: 10px 10px 16px; box-shadow: 0 30px 60px -32px rgba(12, 19, 34, .45); display: grid; gap: 10px; text-decoration: none; }
+  .lc .ph { position: relative; aspect-ratio: 16 / 10; border-radius: 14px; overflow: hidden; }
+  .lc .ph img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.1s cubic-bezier(.2, .75, .2, 1); }
+  .lc:hover .ph img { transform: scale(1.06); }
+  .lc .tag { position: absolute; left: 10px; top: 10px; padding: 7px 10px; border-radius: 99px; background: rgba(255, 255, 255, .92); font: 600 10px/1 var(--sans); letter-spacing: .14em; text-transform: uppercase; }
+  .lc .heart { position: absolute; right: 10px; top: 10px; width: 36px; height: 36px; border-radius: 50%; border: 0; background: rgba(255, 255, 255, .92); display: grid; place-items: center; cursor: pointer; color: var(--ink); }
+  .lc .heart[aria-pressed="true"] svg { fill: #c0473a; stroke: #c0473a; }
+  .lc .body { padding: 0 6px; display: grid; gap: 4px; }
+  .lc .price { font: 600 22px/1.1 var(--sans); font-variant-numeric: tabular-nums; }
+  .lc .name { font: 500 16px/1.3 var(--sans); }
+  .lc .where { color: var(--ink-soft); font-size: 14px; }
+  .lc .spec { display: flex; flex-wrap: wrap; gap: 4px 12px; color: var(--ink-soft); font-size: 12px; margin-top: 6px; padding-top: 10px; border-top: 1px solid var(--line-light); }
+
+  .homes .wrap { padding-block: 30px clamp(90px, 11vw, 140px); }
+  .homes-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 18px; margin-bottom: 30px; }
+  .homes-head h2 { font: 400 clamp(38px, 4.6vw, 66px)/1 var(--serif); }
+  .homes-head h2 em { font-style: italic; color: #26365a; }
+  .homes-head .count { color: var(--ink-soft); font-size: 14px; }
+  .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+  .grid .lc { box-shadow: 0 1px 0 var(--line-light); border: 1px solid var(--line-light); }
+  .grid .lc:hover { box-shadow: 0 30px 60px -36px rgba(12, 19, 34, .45); }
+  .empty { grid-column: 1 / -1; text-align: center; color: var(--ink-soft); padding: 40px; border: 1px dashed var(--line-light); border-radius: 20px; }
+  @media (max-width: 960px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 600px) { .grid { grid-template-columns: minmax(0, 1fr); } }
+
+  /* ===== Signature collection (dark list) ===== */
+  .sig { background: var(--night); position: relative; }
+  .sig .wrap { padding-block: clamp(90px, 11vw, 140px); }
+  .sig-head { display: flex; justify-content: space-between; gap: 20px; padding-bottom: 26px; border-bottom: 1px solid rgba(255, 255, 255, .14); }
+  .sig-row { position: relative; display: grid; grid-template-columns: 60px minmax(0, 1fr) 90px; align-items: center; gap: 10px; padding: 22px 0 18px; border-bottom: 1px solid rgba(255, 255, 255, .14); text-decoration: none; cursor: pointer; }
+  .sig-row .no, .sig-row .more { font: 500 13px/1 var(--sans); color: var(--mist); }
+  .sig-row .more { text-align: right; transition: color .3s; }
+  .sig-row .name { text-align: center; font: 600 clamp(36px, 6.6vw, 104px)/1 var(--sans); font-stretch: 96%; letter-spacing: -.035em; color: rgba(238, 241, 245, .9); white-space: nowrap; transition: color .4s; display: flex; justify-content: center; align-items: center; gap: .18em; }
+  .sig-row .pic { display: inline-block; width: 0; height: .72em; border-radius: .16em; overflow: hidden; transition: width .6s cubic-bezier(.2, .75, .2, 1); }
+  .sig-row .pic img { width: 2.2em; height: 100%; object-fit: cover; max-width: none; }
+  .sig-row .info { grid-column: 2; text-align: center; color: var(--mist); font-size: 13px; max-height: 0; opacity: 0; overflow: hidden; transition: max-height .5s, opacity .5s, margin .5s; }
+  .sig-row.on .name { color: #fff; }
+  .sig-row.on .pic { width: 1.5em; }
+  .sig-row.on .info { max-height: 40px; opacity: 1; margin-top: 10px; }
+  .sig-row.on .more { color: var(--gold-hi); }
+  .sig-list.has-on .sig-row:not(.on) .name { color: rgba(238, 241, 245, .28); }
+  .peek { position: fixed; z-index: 30; left: 0; top: 0; width: 220px; aspect-ratio: 4 / 5; border-radius: 18px; overflow: hidden; pointer-events: none; opacity: 0; transform: translate(-50%, -50%) scale(.8); transition: opacity .35s, transform .35s; box-shadow: 0 40px 80px -30px rgba(0, 0, 0, .9); }
+  .peek.on { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  .peek img { width: 100%; height: 100%; object-fit: cover; }
+  @media (max-width: 760px) { .sig-row { grid-template-columns: 34px minmax(0, 1fr); } .sig-row .more { display: none; } .sig-row .name { font-size: 9.4vw; justify-content: flex-start; } .sig-row .info { text-align: left; } .peek { display: none; } }
+  @media (hover: none) { .peek { display: none; } }
+
+  /* ===== Smart living (hotspots) ===== */
+  .smart { position: relative; background: var(--night); }
+  .smart .head { position: relative; z-index: 2; padding-top: clamp(80px, 9vw, 120px); padding-bottom: 26px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 16px; }
+  .smart .head h2 { font: 300 clamp(40px, 5vw, 76px)/1 var(--serif); text-transform: uppercase; }
+  .smart .head h2 em { font-style: italic; color: var(--gold-hi); text-transform: none; }
+  .smart .head p { max-width: 42ch; color: var(--mist); }
+  .scene { position: relative; aspect-ratio: 2400 / 1250; max-width: 100%; }
+  .scene img { width: 100%; height: 100%; object-fit: cover; }
+  .scene::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, var(--night) 0%, transparent 16%, transparent 80%, var(--night) 100%); pointer-events: none; }
+  .spot { position: absolute; z-index: 2; left: var(--x); top: var(--y); width: 34px; height: 34px; margin: -17px 0 0 -17px; border-radius: 50%; border: 0; background: rgba(255, 255, 255, .95); cursor: pointer; display: grid; place-items: center; box-shadow: 0 0 0 0 rgba(255, 255, 255, .6); animation: ring 2.4s infinite; }
+  .spot::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--ink); transition: transform .3s; }
+  .spot[aria-expanded="true"]::before { background: var(--gold); transform: scale(1.3); }
+  @keyframes ring { 70% { box-shadow: 0 0 0 16px rgba(255, 255, 255, 0); } 100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); } }
+  .card-x { position: absolute; z-index: 3; width: 230px; padding: 14px; border-radius: 16px; background: rgba(255, 255, 255, .16); border: 1px solid rgba(255, 255, 255, .34); backdrop-filter: blur(16px) saturate(1.3); -webkit-backdrop-filter: blur(16px) saturate(1.3); color: #fff; box-shadow: 0 30px 60px -30px rgba(0, 0, 0, .8); opacity: 0; transform: translateY(10px) scale(.96); transition: opacity .4s, transform .4s; pointer-events: none; }
+  .card-x.on { opacity: 1; transform: none; pointer-events: auto; }
+  .card-x .bar { display: flex; gap: 5px; margin-bottom: 10px; } .card-x .bar i { width: 8px; height: 8px; border-radius: 50%; background: rgba(255, 255, 255, .5); } .card-x .bar i:first-child { background: #ff6b5e; } .card-x .bar i:nth-child(2) { background: #ffc24a; } .card-x .bar i:nth-child(3) { background: #3fcf6c; }
+  .card-x b { display: block; font: 600 15px/1.2 var(--sans); }
+  .card-x span { display: block; font: 300 34px/1.1 var(--serif); margin: 6px 0 4px; }
+  .card-x small { color: rgba(255, 255, 255, .85); font-size: 12px; line-height: 1.4; display: block; }
+  @media (max-width: 760px) { .card-x { left: 16px !important; right: 16px; top: auto !important; bottom: -8px; width: auto; transform: translateY(100%); } .card-x.on { transform: translateY(100%); } .scene { margin-bottom: 140px; } }
+
+  /* ===== Testimonial + numbers ===== */
+  .voice .wrap { padding-block: clamp(90px, 11vw, 140px); display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(30px, 6vw, 90px); align-items: center; }
+  .voice .portrait { position: relative; aspect-ratio: 4 / 5; border-radius: 28px; overflow: hidden; }
+  .voice .portrait img { width: 100%; height: 100%; object-fit: cover; }
+  .voice .portrait .badge { position: absolute; left: 16px; bottom: 16px; padding: 12px 16px; border-radius: 16px; background: rgba(255, 255, 255, .92); color: var(--ink); font-size: 13px; }
+  .voice .portrait .badge b { display: block; font-size: 15px; }
+  .voice blockquote { margin: 18px 0 0; font: 300 clamp(30px, 3.4vw, 50px)/1.15 var(--serif); color: var(--ink); }
+  .voice blockquote em { color: #26365a; }
+  .voice .who { margin-top: 22px; display: flex; align-items: center; gap: 14px; color: var(--ink-soft); }
+  .voice .who b { color: var(--ink); }
+  .stars { color: #b8893e; letter-spacing: 3px; }
+  .stats { margin-top: 44px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--line-light); }
+  .stats div { padding: 22px 12px 0 0; }
+  .stats b { display: block; font: 300 clamp(34px, 3.4vw, 52px)/1 var(--serif); color: var(--ink); font-variant-numeric: tabular-nums; }
+  .stats span { color: var(--ink-soft); font-size: 13px; }
+  @media (max-width: 900px) { .voice .wrap { grid-template-columns: minmax(0, 1fr); } .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 0; } }
+
+  /* ===== Journal ===== */
+  .journal { background: var(--navy); }
+  .journal .wrap { padding-block: clamp(90px, 11vw, 140px); }
+  .j-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 16px; margin-bottom: 34px; }
+  .j-head h2 { font: 300 clamp(40px, 5vw, 76px)/1 var(--serif); text-transform: uppercase; }
+  .j-head h2 em { font-style: italic; color: var(--gold-hi); text-transform: none; }
+  .posts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+  .post { text-decoration: none; display: grid; gap: 14px; }
+  .post .ph { aspect-ratio: 4 / 3; border-radius: 20px; overflow: hidden; }
+  .post img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s cubic-bezier(.2, .75, .2, 1); }
+  .post:hover img { transform: scale(1.06); }
+  .post .meta { color: var(--mist); font-size: 13px; }
+  .post h3 { font: 400 26px/1.15 var(--serif); }
+  .post:hover h3 { color: var(--gold-hi); }
+  @media (max-width: 860px) { .posts { grid-template-columns: minmax(0, 1fr); } }
+
+  /* ===== Private viewing ===== */
+  .viewing { position: relative; isolation: isolate; overflow: hidden; }
+  .viewing > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; }
+  .viewing::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(7, 11, 20, .92) 0%, rgba(7, 11, 20, .75) 50%, rgba(7, 11, 20, .5) 100%); }
+  .viewing .wrap { padding-block: clamp(90px, 11vw, 140px); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 50px; align-items: center; }
+  .viewing h2 { font: 300 clamp(44px, 5.6vw, 92px)/.95 var(--serif); text-transform: uppercase; margin-top: 16px; }
+  .viewing h2 em { font-style: italic; color: var(--gold-hi); text-transform: none; }
+  .viewing .lead { color: rgba(238, 241, 245, .82); max-width: 42ch; margin-top: 18px; }
+  .vform { padding: 26px; border-radius: 24px; background: rgba(255, 255, 255, .08); border: 1px solid var(--glass-line); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+  .vform label { display: grid; gap: 7px; font: 600 10px/1 var(--sans); letter-spacing: .18em; text-transform: uppercase; color: var(--mist); }
+  .vform .full { grid-column: 1 / -1; }
+  .vform input, .vform select, .vform textarea { font: 400 15px/1.4 var(--sans); letter-spacing: 0; text-transform: none; color: var(--text); background: rgba(7, 11, 20, .45); border: 1px solid var(--glass-line); border-radius: 12px; padding: 13px 14px; width: 100%; }
+  .vform select option { color: #000; }
+  .vform input:focus, .vform select:focus, .vform textarea:focus { outline: 2px solid var(--gold); outline-offset: 1px; }
+  .err { color: #ffb3a6; font-size: 13px; min-height: 1.2em; }
+  .done { grid-column: 1 / -1; display: grid; gap: 12px; }
+  .done h3 { font: 300 36px/1.1 var(--serif); }
+  .done p { color: rgba(238, 241, 245, .82); }
+  @media (max-width: 900px) { .viewing .wrap { grid-template-columns: minmax(0, 1fr); } }
+  @media (max-width: 520px) { .vform { grid-template-columns: minmax(0, 1fr); } }
+
+  footer { background: var(--night); }
+  footer .wrap { padding-block: 50px 34px; display: grid; grid-template-columns: minmax(0, 1.4fr) repeat(3, minmax(0, 1fr)); gap: 30px; color: var(--mist); font-size: 14px; }
+  footer b { display: block; color: var(--text); font: 500 11px/1 var(--sans); letter-spacing: .2em; text-transform: uppercase; margin-bottom: 12px; }
+  footer a { display: block; text-decoration: none; padding: 3px 0; } footer a:hover { color: var(--gold-hi); }
+  footer .base { grid-column: 1 / -1; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; border-top: 1px solid rgba(255, 255, 255, .1); padding-top: 20px; font-size: 12px; }
+  @media (max-width: 760px) { footer .wrap { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } footer .wrap > div:first-child { grid-column: 1 / -1; } }
+
+  .toast { position: fixed; z-index: 70; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); translate: -50% 20px; opacity: 0; padding: 12px 18px; border-radius: 99px; background: #fff; color: var(--ink); font: 600 14px/1 var(--sans); box-shadow: 0 20px 40px -16px rgba(0, 0, 0, .6); transition: opacity .3s, translate .3s; pointer-events: none; }
+  .toast.show { opacity: 1; translate: -50% 0; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  }
+</style>
+</head>
+<body>
+<header class="top" id="hdr">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Vantage Residences home"><b>VANTAGE</b><small>RESIDENCES</small></a>
+    <nav class="pill" aria-label="Main">
+      <a href="#top" class="on">Home</a>
+      <a href="#sky">Sky Residence</a>
+      <a href="#find">Find a home</a>
+      <a href="#signature">Collection</a>
+      <a href="#smart">Smart living</a>
+      <a href="#journal">Journal</a>
+    </nav>
+    <a class="btn line" href="#viewing">Private viewing</a>
+    <button class="menu-btn" type="button" id="menu-btn" aria-label="Open the menu" aria-expanded="false" aria-controls="sheet"><svg width="18" height="18" viewBox="0 0 18 18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M2 6h14M2 12h14"/></svg></button>
+  </div>
+</header>
+<nav class="sheet" id="sheet" aria-label="Menu">
+  <a href="#top">Home</a><a href="#sky">Sky Residence</a><a href="#find">Find a home</a><a href="#signature">Collection</a><a href="#smart">Smart living</a><a href="#journal">Journal</a><a href="#viewing">Private viewing</a>
+</nav>
+
+<section class="hero" id="top" aria-label="Vantage Residences">
+  <img class="layer back" src="media/hero-back.webp" alt="" aria-hidden="true">
+  <p class="word" id="word" aria-hidden="true">VANTAGE</p>
+  <img class="layer front" id="front" src="media/hero-front.webp" alt="A white modern residence with glass balconies against a clear sky">
+  <div class="ui">
+    <span class="year">©2026</span>
+    <div class="social" aria-hidden="true">
+      <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></span>
+      <span><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M10 15.5v-7l6 3.5z"/><rect x="2.5" y="5" width="19" height="14" rx="4" fill="none" stroke="currentColor" stroke-width="1.8"/></svg></span>
+      <span><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.8 3h3.1l-6.8 7.8 8 10.2h-6.3l-4.9-6.4L5.3 21H2.2l7.3-8.3L1.8 3h6.4l4.4 5.9zM16.7 19.2h1.7L7.4 4.7H5.6z"/></svg></span>
+      <span><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v2H7v4h3v8h4v-8h3l1-4h-4V8.5c0-.3.2-.5.5-.5z"/></svg></span>
+    </div>
+    <div class="copy">
+      <div>
+        <span class="eyebrow">Private real estate · Since 2008</span>
+        <h1>Homes above <em>the ordinary</em></h1>
+        <div class="act"><a class="btn gold" href="#find">Explore residences <span class="ar">→</span></a><a class="btn line" href="#sky">The Sky Residence</a></div>
+      </div>
+      <p>Penthouses, villas and estates in 38 cities, shown privately to buyers who know what they want.</p>
+    </div>
+    <span class="scroll-cue" aria-hidden="true"></span>
+  </div>
+</section>
+
+<section class="sky" id="sky" aria-label="The Sky Residence">
+  <div class="stage">
+    <img class="poster" src="media/sky.webp" alt="" aria-hidden="true">
+    <video id="sky-v" muted playsinline preload="auto" poster="media/sky.webp" aria-hidden="true"><source src="media/sky.mp4" type="video/mp4"></video>
+    <div class="chapters" aria-live="polite">
+      <div class="ch on" data-i="0"><span class="eyebrow">Project 01 · The Sky Residence</span><h2>Look up.</h2><p>The best address in the city isn't on the street.</p></div>
+      <div class="ch" data-i="1"><span class="eyebrow">Project 01 · The Sky Residence</span><h2>Something is hidden above.</h2><p>Sixty-one floors up, reached by a private lift.</p></div>
+      <div class="ch" data-i="2"><span class="eyebrow">Project 01 · The Sky Residence</span><h2>Above everything.</h2><p>A glass crown 280 metres over the skyline, with sunset on every wall.</p></div>
+      <div class="ch" data-i="3"><span class="eyebrow">Project 01 · The Sky Residence</span><h2>The Sky Residence.</h2><p>Discover a different perspective.</p>
+        <div class="facts"><span>Floor 61</span><span>4 bedrooms</span><span>512 m²</span><span>Sky pool</span><span class="num">USD 14.5M</span></div>
+        <a class="btn line" href="#viewing">Explore the residence <span class="ar">→</span></a></div>
+    </div>
+    <div class="rail" aria-hidden="true"><span class="lbl">Scroll to rise</span><span class="track"></span><span class="fill" id="sky-fill"></span><span class="dot" id="sky-dot">01</span></div>
+    <div class="floor" aria-hidden="true"><b id="sky-floor">12</b>floor</div>
+  </div>
+</section>
+
+<section class="find light" id="find" aria-label="Find a home">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">Get recommendations</span>
+      <h2 class="words"><span>Penthouses.</span><span>Villas.</span><span>Estates.</span><span>Tours.</span></h2>
+      <p class="lead">Tell us where and how you want to live. An advisor can walk you through any home on a private video tour within 24 hours.</p>
+      <form class="search" id="search" role="search" aria-label="Search homes">
+        <label for="s-loc">Location<select id="s-loc"><option value="">Anywhere</option><option>Europe</option><option>Middle East</option><option>Americas</option><option>Asia Pacific</option></select></label>
+        <label for="s-type">Property<select id="s-type"><option value="">Any type</option><option>Penthouse</option><option>Villa</option><option>Estate</option></select></label>
+        <label for="s-budget">Budget<select id="s-budget"><option value="">Any price</option><option value="0-5">Under $5M</option><option value="5-10">$5M – $10M</option><option value="10-99">Above $10M</option></select></label>
+        <button type="submit" aria-label="Search homes"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg></button>
+      </form>
+    </div>
+    <div class="fan" id="fan" aria-label="Recommended homes"></div>
+  </div>
+</section>
+
+<section class="homes light" id="homes" aria-label="Featured homes">
+  <div class="wrap">
+    <div class="homes-head">
+      <div><span class="eyebrow">Featured properties</span><h2>Exceptional homes. <em>Extraordinary places.</em></h2></div>
+      <span class="count" id="count" aria-live="polite"></span>
+    </div>
+    <div class="grid" id="grid"></div>
+  </div>
+</section>
+
+<section class="sig" id="signature" aria-label="Signature collection">
+  <div class="wrap">
+    <div class="sig-head"><span class="slash">/Signature collection</span><span class="slash">What we're known for (and do really well)</span></div>
+    <div class="sig-list" id="sig-list"></div>
+  </div>
+</section>
+
+<section class="smart" id="smart" aria-label="Smart living">
+  <div class="wrap head">
+    <div><span class="slash">/Smart living</span><h2 style="margin-top:14px">Every home, <em>intelligently run</em></h2></div>
+    <p>Tap a light to see what each of our homes does on its own: climate, lighting, security and energy, all from one app.</p>
+  </div>
+  <div class="scene" id="scene">
+    <img src="img/hero-3.webp" alt="A family home at dusk with warm lights in the windows" loading="lazy">
+  </div>
+</section>
+
+<section class="voice light" aria-label="What clients say">
+  <div class="wrap">
+    <div class="portrait"><img src="img/portrait.webp" alt="Portrait of a client, Isabelle Laurent" loading="lazy"><div class="badge"><b>Isabelle Laurent</b>Bought a villa on the Riviera</div></div>
+    <div>
+      <span class="eyebrow">Client stories</span>
+      <blockquote>“They found us a house that was never on the market, and the whole purchase felt <em>effortless.</em> We moved in before summer.”</blockquote>
+      <div class="who"><span class="stars" aria-label="5 out of 5">★★★★★</span><span><b>Isabelle &amp; Marc Laurent</b> · Villa Azure, Côte d'Azur</span></div>
+      <div class="stats">
+        <div><b>$2.4B</b><span>in homes sold</span></div>
+        <div><b>38</b><span>cities worldwide</span></div>
+        <div><b>1,200+</b><span>families moved</span></div>
+        <div><b>18</b><span>years of private sales</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="journal" id="journal" aria-label="Journal">
+  <div class="wrap">
+    <div class="j-head"><div><span class="slash">/Journal</span><h2 style="margin-top:14px">Insights for <em>elevated living</em></h2></div><a class="btn line" href="#journal">All articles</a></div>
+    <div class="posts">
+      <a class="post" href="#journal"><div class="ph"><img src="img/in-1.webp" alt="" loading="lazy"></div><span class="meta">Design · 6 min read</span><h3>Why the best living rooms are built around evening light</h3></a>
+      <a class="post" href="#journal"><div class="ph"><img src="img/pano-2.webp" alt="" loading="lazy"></div><span class="meta">Markets · 4 min read</span><h3>Five coastal cities where prime homes held their value in 2026</h3></a>
+      <a class="post" href="#journal"><div class="ph"><img src="img/col-4.webp" alt="" loading="lazy"></div><span class="meta">Living · 5 min read</span><h3>Lake, garden or skyline: choosing the view you'll wake up to</h3></a>
+    </div>
+  </div>
+</section>
+
+<section class="viewing" id="viewing" aria-label="Arrange a private viewing">
+  <img src="img/in-2.webp" alt="" loading="lazy">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">Get in touch</span>
+      <h2>Let's find your <em>next home</em></h2>
+      <p class="lead">Whether you're buying, selling or simply curious, a senior advisor replies within one working day. In person, by video, or on WhatsApp.</p>
+    </div>
+    <form class="vform" id="vform" novalidate>
+      <label for="v-name">Name<input id="v-name" autocomplete="name" placeholder="Your full name"></label>
+      <label for="v-contact">Email or phone<input id="v-contact" autocomplete="email" placeholder="How we reach you"></label>
+      <label for="v-home">Interested in<select id="v-home"></select></label>
+      <label for="v-date">Preferred date<input id="v-date" type="date"></label>
+      <label class="full" for="v-msg">Message<textarea id="v-msg" rows="3" placeholder="Budget, timing, the kind of view you want"></textarea></label>
+      <p class="err full" id="v-err" role="alert"></p>
+      <div class="full"><button class="btn gold" type="submit">Schedule a consultation <span class="ar">→</span></button></div>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div><a class="logo" href="#top" style="display:grid"><b>VANTAGE</b><small>RESIDENCES</small></a><p style="margin-top:16px;max-width:34ch">Private real estate for penthouses, villas and estates in 38 cities.</p></div>
+    <div><b>Explore</b><a href="#sky">Sky Residence</a><a href="#find">Find a home</a><a href="#signature">Collection</a><a href="#smart">Smart living</a></div>
+    <div><b>Company</b><a href="#journal">Journal</a><a href="#viewing">Private viewing</a><a href="#viewing">Sell with us</a></div>
+    <div><b>Offices</b><span>Monaco · Dubai · London · Miami</span></div>
+    <div class="base"><span>© 2026 Vantage Residences · Sample real estate website</span><span>Photos and video: Pexels (free licence)</span></div>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+(() => {
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+
+  /* ---------- Homes ---------- */
+  const HOMES = [
+    { id: "sky", name: "The Sky Residence", where: "Dubai Marina, UAE", loc: "Middle East", type: "Penthouse", price: "USD 14,500,000", usd: 14.5, beds: 4, baths: 5, area: 512, img: "img/res-4.webp", tag: "New", sig: "Floor 61 · 4 bd · 5 ba · 512 m² · Sky pool" },
+    { id: "azure", name: "Villa Azure", where: "Côte d'Azur, France", loc: "Europe", type: "Villa", price: "EUR 12,800,000", usd: 13.8, beds: 6, baths: 7, area: 820, img: "img/hero-1.webp", tag: "For sale", sig: "Sea view · 6 bd · 7 ba · 820 m² · Infinity pool" },
+    { id: "glass", name: "The Glasshouse", where: "Lake Como, Italy", loc: "Europe", type: "Villa", price: "EUR 6,900,000", usd: 7.5, beds: 5, baths: 5, area: 640, img: "img/res-3.webp", tag: "Exclusive", sig: "Lake frontage · 5 bd · 5 ba · 640 m² · Boat house" },
+    { id: "stone", name: "Stonegate Estate", where: "Cotswolds, England", loc: "Europe", type: "Estate", price: "GBP 9,400,000", usd: 11.9, beds: 8, baths: 7, area: 1150, img: "img/hero-2.webp", tag: "For sale", sig: "4.2 ha · 8 bd · 7 ba · 1,150 m² · Walled garden" },
+    { id: "harbour", name: "Harbour Penthouse", where: "Sydney, Australia", loc: "Asia Pacific", type: "Penthouse", price: "AUD 11,200,000", usd: 7.4, beds: 3, baths: 4, area: 410, img: "img/col-2.webp", tag: "For sale", sig: "Harbour view · 3 bd · 4 ba · 410 m² · Terrace" },
+    { id: "lumiere", name: "Lumière House", where: "Miami Beach, USA", loc: "Americas", type: "Villa", price: "USD 8,750,000", usd: 8.75, beds: 5, baths: 6, area: 700, img: "img/res-1.webp", tag: "For sale", sig: "Bay front · 5 bd · 6 ba · 700 m² · Dock" },
+    { id: "blue", name: "Blue Hour Residence", where: "Vancouver, Canada", loc: "Americas", type: "Estate", price: "CAD 6,300,000", usd: 4.6, beds: 5, baths: 5, area: 590, img: "img/hero-5.webp", tag: "Under offer", sig: "Forest edge · 5 bd · 5 ba · 590 m²" },
+    { id: "pavilion", name: "Lakeside Pavilion", where: "Geneva, Switzerland", loc: "Europe", type: "Villa", price: "CHF 4,200,000", usd: 4.7, beds: 4, baths: 4, area: 460, img: "img/res-5.webp", tag: "For sale", sig: "Private jetty · 4 bd · 4 ba · 460 m²" },
+  ];
+  let favs = []; try { favs = JSON.parse(localStorage.getItem("vt-favs") || "[]"); } catch {}
+  const heart = (h) => `<button class="heart" type="button" data-fav="${h.id}" aria-pressed="${favs.includes(h.id)}" aria-label="Save ${esc(h.name)}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-4.4-9.3-9A5.3 5.3 0 0 1 12 6a5.3 5.3 0 0 1 9.3 6c-2.3 4.6-9.3 9-9.3 9z"/></svg></button>`;
+  const card = (h, lazy = true) => `<article class="lc" data-id="${h.id}"><div class="ph"><img src="${h.img}" alt="${esc(h.name)}" ${lazy ? 'loading="lazy"' : ""}><span class="tag">${esc(h.tag)}</span>${heart(h)}</div>
+    <div class="body"><span class="price">${esc(h.price)}</span><span class="name">${esc(h.name)}</span><span class="where">${esc(h.where)}</span>
+    <div class="spec"><span>${h.beds} bd</span><span>${h.baths} ba</span><span class="num">${h.area.toLocaleString()} m²</span><span>${esc(h.type)} for sale</span></div></div></article>`;
+  $("#fan").innerHTML = HOMES.slice(0, 4).map((h) => card(h, false)).join("");
+  function bindHearts(root) {
+    $$("[data-fav]", root).forEach((b) => b.addEventListener("click", (e) => {
+      e.preventDefault(); e.stopPropagation();
+      const id = b.dataset.fav, on = !favs.includes(id);
+      favs = on ? [...favs, id] : favs.filter((x) => x !== id);
+      try { localStorage.setItem("vt-favs", JSON.stringify(favs)); } catch {}
+      $$(`[data-fav="${id}"]`).forEach((x) => x.setAttribute("aria-pressed", String(on)));
+      toast(on ? "Saved to your shortlist" : "Removed from your shortlist");
+    }));
+  }
+  function renderGrid() {
+    const loc = $("#s-loc").value, type = $("#s-type").value, budget = $("#s-budget").value;
+    const [lo, hi] = budget ? budget.split("-").map(Number) : [0, 1e9];
+    const list = HOMES.filter((h) => (!loc || h.loc === loc) && (!type || h.type === type) && h.usd >= lo && h.usd < hi);
+    $("#grid").innerHTML = list.length ? list.map((h) => card(h)).join("") : `<p class="empty">No homes match this search yet. Try another location or budget, or ask an advisor about homes that aren't listed.</p>`;
+    $("#count").textContent = `${list.length} of ${HOMES.length} homes`;
+    bindHearts($("#grid"));
+  }
+  bindHearts($("#fan"));
+  renderGrid();
+  $("#search").addEventListener("submit", (e) => { e.preventDefault(); renderGrid(); $("#homes").scrollIntoView({ behavior: reduce ? "auto" : "smooth" }); });
+  $$("#search select").forEach((s) => s.addEventListener("change", renderGrid));
+
+  /* ---------- Header, menu ---------- */
+  const hdr = $("#hdr");
+  const sheet = $("#sheet"), mbtn = $("#menu-btn");
+  const setMenu = (o) => { sheet.classList.toggle("open", o); mbtn.setAttribute("aria-expanded", String(o)); mbtn.setAttribute("aria-label", o ? "Close the menu" : "Open the menu"); document.body.style.overflow = o ? "hidden" : ""; };
+  mbtn.addEventListener("click", () => setMenu(!sheet.classList.contains("open")));
+  $$("a", sheet).forEach((a) => a.addEventListener("click", () => setMenu(false)));
+  addEventListener("keydown", (e) => { if (e.key === "Escape") setMenu(false); });
+  const navLinks = $$("nav.pill a"), sections = navLinks.map((a) => $(a.getAttribute("href")));
+
+  /* ---------- Scroll-driven parts ---------- */
+  const word = $("#word"), front = $("#front"), hero = $("#top");
+  const sky = $("#sky"), skyV = $("#sky-v"), chs = $$(".sky .ch"), dot = $("#sky-dot"), fill = $("#sky-fill"), floorEl = $("#sky-floor");
+  let skyReady = false, want = 0;
+  skyV.addEventListener("loadedmetadata", () => { skyReady = true; skyV.previousElementSibling.hidden = true; });
+  skyV.addEventListener("seeked", () => { if (Math.abs(skyV.currentTime - want) > .04) skyV.currentTime = want; });
+  addEventListener("touchstart", () => { if (!skyV.dataset.kick) { skyV.dataset.kick = 1; skyV.play().then(() => skyV.pause()).catch(() => {}); } }, { once: true, passive: true });
+  let chNow = 0, ticking = false;
+  function onScroll() {
+    ticking = false;
+    const y = scrollY, vh = innerHeight;
+    hdr.classList.toggle("solid", y > 40);
+    // hero: the name sinks slower than the house, so the house seems to rise in front of it
+    if (!reduce && y < vh * 1.2) {
+      const k = y / vh;
+      word.style.transform = `translateY(${k * 22}vh) scale(${1 - k * .08})`;
+      front.style.transform = `translateY(${-k * 4}vh) scale(${1 + k * .06})`;
+    }
+    // sky reveal: scroll scrubs the tower film and steps through the chapters
+    const r = sky.getBoundingClientRect(), total = r.height - vh, p = Math.max(0, Math.min(1, -r.top / total));
+    if (r.top < vh && r.bottom > 0) {
+      if (skyReady && !reduce) { want = p * (skyV.duration - .05); if (!skyV.seeking) skyV.currentTime = want; }
+      const c = Math.min(3, Math.floor(p * 4.2));
+      if (c !== chNow) { chs[chNow].classList.remove("on"); chs[c].classList.add("on"); chNow = c; }
+      dot.textContent = "0" + (c + 1); dot.style.top = (p * 100) + "%"; fill.style.height = (p * 100) + "%";
+      floorEl.textContent = Math.round(12 + p * 49);
+    }
+    // header pill: highlight the section in view
+    let cur = 0; sections.forEach((s, i) => { if (s && s.getBoundingClientRect().top < vh * .4) cur = i; });
+    navLinks.forEach((a, i) => a.classList.toggle("on", i === cur));
+  }
+  addEventListener("scroll", () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
+  addEventListener("resize", onScroll);
+  onScroll();
+
+  /* ---------- Signature collection ---------- */
+  const SIG = ["sky", "azure", "glass", "stone", "harbour"].map((id) => HOMES.find((h) => h.id === id));
+  const list = $("#sig-list");
+  list.innerHTML = SIG.map((h, i) => {
+    const words = h.name.split(" "), cut = Math.max(1, Math.ceil(words.length / 2) - (words.length > 2 ? 1 : 0));
+    return `<a class="sig-row" href="#viewing" data-img="${h.img}">
+      <span class="no">/0${i + 1}</span>
+      <span class="name">${esc(words.slice(0, cut).join(" "))}<span class="pic" aria-hidden="true"><img src="${h.img}" alt="" loading="lazy"></span>${esc(words.slice(cut).join(" "))}</span>
+      <span class="more">/See more</span>
+      <span class="info">${esc(h.where)} | ${esc(h.sig)} | ${esc(h.price)}</span></a>`;
+  }).join("");
+  const rows = $$(".sig-row", list);
+  const activate = (row) => { rows.forEach((r) => r.classList.toggle("on", r === row)); list.classList.toggle("has-on", !!row); };
+  rows.forEach((row) => {
+    row.addEventListener("mouseenter", () => activate(row));
+    row.addEventListener("focus", () => activate(row));
+  });
+  list.addEventListener("mouseleave", () => activate(null));
+  // on touch screens the row in the middle of the screen opens by itself
+  if (matchMedia("(hover: none)").matches) {
+    const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) activate(e.target); }), { rootMargin: "-45% 0px -45% 0px" });
+    rows.forEach((r) => io.observe(r));
+  }
+
+  /* ---------- Smart living hotspots ---------- */
+  const SPOTS = [
+    { x: 53, y: 43, t: "Lighting", v: "Dusk scene", d: "Lights warm up at sunset and dim room by room at night.", cx: 56, cy: 12 },
+    { x: 38, y: 43, t: "Climate", v: "22 °C", d: "Every room keeps its own temperature, learned from your routine.", cx: 14, cy: 14 },
+    { x: 63, y: 73, t: "Security", v: "All secure", d: "Keyless entry, cameras and sensors, checked from your phone.", cx: 70, cy: 50 },
+    { x: 24, y: 47, t: "Energy", v: "11 kWh", d: "Solar roof and home battery cover most evenings off the grid.", cx: 4, cy: 56 },
+    { x: 45, y: 76, t: "Garage", v: "EV charging", d: "Your car charges overnight on the cheapest power.", cx: 30, cy: 60 },
+  ];
+  const scene = $("#scene");
+  scene.insertAdjacentHTML("beforeend", SPOTS.map((s, i) => `<button class="spot" type="button" style="--x:${s.x}%;--y:${s.y}%" aria-expanded="false" aria-controls="cx${i}" aria-label="${s.t}"></button>
+    <div class="card-x" id="cx${i}" style="left:${s.cx}%;top:${s.cy}%" role="note"><div class="bar"><i></i><i></i><i></i></div><b>${s.t}</b><span>${s.v}</span><small>${s.d}</small></div>`).join(""));
+  const spots = $$(".spot", scene), cards = $$(".card-x", scene);
+  let spotNow = -1, spotTimer = 0, userSpot = false;
+  function openSpot(i) { spots.forEach((s, k) => s.setAttribute("aria-expanded", String(k === i))); cards.forEach((c, k) => c.classList.toggle("on", k === i)); spotNow = i; }
+  spots.forEach((s, i) => s.addEventListener("click", () => { userSpot = true; clearInterval(spotTimer); openSpot(spotNow === i ? -1 : i); }));
+  new IntersectionObserver((es) => es.forEach((e) => {
+    clearInterval(spotTimer);
+    if (e.isIntersecting && !userSpot && !reduce) { openSpot(0); spotTimer = setInterval(() => openSpot((spotNow + 1) % SPOTS.length), 3200); }
+  }), { threshold: .4 }).observe(scene);
+
+  /* ---------- Private viewing ---------- */
+  $("#v-home").innerHTML = HOMES.map((h) => `<option>${esc(h.name)}, ${esc(h.where)}</option>`).join("") + "<option>Not sure yet</option>";
+  $("#vform").addEventListener("submit", (e) => {
+    e.preventDefault();
+    const err = $("#v-err"), name = $("#v-name").value.trim(), contact = $("#v-contact").value.trim();
+    if (name.length < 2) { err.textContent = "Please add your name."; $("#v-name").focus(); return; }
+    if (!/^\S+@\S+\.\S+$/.test(contact) && contact.replace(/\D/g, "").length < 7) { err.textContent = "Please add an email address or a phone number with at least 7 digits."; $("#v-contact").focus(); return; }
+    const d = $("#v-date").value;
+    e.target.innerHTML = `<div class="done"><span class="eyebrow">Request received</span><h3>Thank you, ${esc(name.split(" ")[0])}.</h3><p>A senior advisor will contact you about <b>${esc($("#v-home").value)}</b>${d ? " to confirm " + esc(new Date(d + "T12:00").toLocaleDateString(undefined, { weekday: "long", day: "numeric", month: "long" })) : ""}. On this sample site nothing is sent.</p></div>`;
+  });
+
+  let tt = 0;
+  function toast(m) { const t = $("#toast"); t.textContent = m; t.classList.add("show"); clearTimeout(tt); tt = setTimeout(() => t.classList.remove("show"), 2000); }
+})();
+</script>
+</body>
+</html>
