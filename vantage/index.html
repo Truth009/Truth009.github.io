@@ -530,8 +530,11 @@
   /* ---------- Scroll-driven parts ---------- */
   const word = $("#word"), front = $("#front"), hero = $("#top");
   const sky = $("#sky"), skyV = $("#sky-v"), chs = $$(".sky .ch"), dot = $("#sky-dot"), fill = $("#sky-fill"), floorEl = $("#sky-floor");
+  // the film may already be loaded by the time this script runs (slow fonts delay scripts), so check both ways
   let skyReady = false, want = 0;
-  skyV.addEventListener("loadedmetadata", () => { skyReady = true; skyV.previousElementSibling.hidden = true; });
+  const markReady = () => { if (skyReady) return; skyReady = true; skyV.previousElementSibling.hidden = true; onScrollSoon(); };
+  skyV.addEventListener("loadedmetadata", markReady);
+  if (skyV.readyState >= 1) setTimeout(markReady, 0);
   skyV.addEventListener("seeked", () => { if (Math.abs(skyV.currentTime - want) > .04) skyV.currentTime = want; });
   addEventListener("touchstart", () => { if (!skyV.dataset.kick) { skyV.dataset.kick = 1; skyV.play().then(() => skyV.pause()).catch(() => {}); } }, { once: true, passive: true });
   let chNow = 0, ticking = false;
@@ -558,7 +561,8 @@
     let cur = 0; sections.forEach((s, i) => { if (s && s.getBoundingClientRect().top < vh * .4) cur = i; });
     navLinks.forEach((a, i) => a.classList.toggle("on", i === cur));
   }
-  addEventListener("scroll", () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
+  function onScrollSoon() { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }
+  addEventListener("scroll", onScrollSoon, { passive: true });
   addEventListener("resize", onScroll);
   onScroll();
 
